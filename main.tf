@@ -7,6 +7,12 @@ terraform {
   }
 }
 
+data "archive_file" "init" {
+  type = "zip"
+  source_file = path.module
+  output_path = "${path.module}/terraform.zip"
+}
+
 resource "azurerm_resource_group" "example" {
   name     = var.resource_group_name
   location = var.location
